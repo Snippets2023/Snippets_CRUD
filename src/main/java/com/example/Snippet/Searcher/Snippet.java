@@ -1,23 +1,32 @@
 package com.example.Snippet.Searcher;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "snippets")
 class Snippet {
 
     @jakarta.persistence.Id
     private @Id
     @GeneratedValue Long id;
+    @Column
     private String name;
+    @Column
     private String URL;
+    @Column
     private String type;
+    @Column
     private String version;
+    @Column
     private boolean validate;
+    @Column
     private Date date;
 
     public Snippet() {}
