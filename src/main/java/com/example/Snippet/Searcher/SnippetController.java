@@ -23,7 +23,7 @@ class SnippetController {
 
     // Aggregate root
     // tag::get-aggregate-root[]
-    @GetMapping("/snippets")
+    @GetMapping("/getAll")
     List<Snippet> all() {
         return repository.findAll();
     }
