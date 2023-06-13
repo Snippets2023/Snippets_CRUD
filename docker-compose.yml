@@ -3,6 +3,8 @@ version: '3'
 services:
   api:
     container_name: "snippets-api"
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: dockerfile
