@@ -93,9 +93,8 @@ class Snippet {
 
         if (this == o)
             return true;
-        if (!(o instanceof Snippet))
+        if (!(o instanceof Snippet snippet))
             return false;
-        Snippet snippet = (Snippet) o;
         return Objects.equals(this.id, snippet.id) && Objects.equals(this.name, snippet.name)
                 && Objects.equals(this.URL, snippet.URL) && Objects.equals(this.type, snippet.type)
                 && Objects.equals(this.version, snippet.version) && Objects.equals(this.validate, snippet.validate)
