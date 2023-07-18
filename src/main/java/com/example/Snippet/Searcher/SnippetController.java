@@ -15,13 +15,7 @@ import org.austral.edu.Results.ClassicResult;
 import org.austral.edu.Results.Result;
 import org.austral.edu.StringInput;
 import org.austral.edu.Token;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import parser.ParserV1;
 
 @RestController
@@ -44,15 +38,13 @@ class SnippetController {
     // end::get-aggregate-root[]
 
     @GetMapping("/run")
-    String run() throws UnclosedBracesException, UnclosedParenthesesException, UnclosedStringLiteralException, UnexpectedTokenException, ExpectedTokenException, IncompatibilityException, DividedByZeroException, AssignationException, InterpretException, IncompatibleOperationException, NotDefinedException, VariableDoesntExistsException {
+    String run(@RequestParam String id) throws UnclosedBracesException, UnclosedParenthesesException, UnclosedStringLiteralException, UnexpectedTokenException, ExpectedTokenException, IncompatibilityException, DividedByZeroException, AssignationException, InterpretException, IncompatibleOperationException, NotDefinedException, VariableDoesntExistsException {
         LexerV1 lexer = new LexerV1();
         ParserV1 parser = new ParserV1();
         SnippetResult result = new SnippetResult();
         InterpreterV1 interpreter = new InterpreterV1(result);
 
-        List<Token> tokens = lexer.lex(new StringInput("let x: number = 4;" +
-                "let y: number = 6;" +
-                "println(x + y);"));
+        List<Token> tokens = lexer.lex(new StringInput(id));
 
         AbstractSyntaxTree ast = parser.parse(tokens);
 
