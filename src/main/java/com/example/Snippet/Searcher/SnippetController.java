@@ -47,7 +47,7 @@ class SnippetController {
     String run() throws UnclosedBracesException, UnclosedParenthesesException, UnclosedStringLiteralException, UnexpectedTokenException, ExpectedTokenException, IncompatibilityException, DividedByZeroException, AssignationException, InterpretException, IncompatibleOperationException, NotDefinedException, VariableDoesntExistsException {
         LexerV1 lexer = new LexerV1();
         ParserV1 parser = new ParserV1();
-        ClassicResult result = new ClassicResult();
+        SnippetResult result = new SnippetResult();
         InterpreterV1 interpreter = new InterpreterV1(result);
 
         List<Token> tokens = lexer.lex(new StringInput("let x: number = 4;" +
@@ -58,7 +58,7 @@ class SnippetController {
 
         interpreter.interpret(ast);
 
-        return interpreter.getResult().toString();
+        return result.res;
 
     }
 
